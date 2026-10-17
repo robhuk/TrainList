@@ -29,41 +29,36 @@ button{border:0;border-radius:11px;padding:13px 15px;font-weight:800;font-size:.
 footer{text-align:center;font-size:.75rem;color:#777;padding:8px 12px 24px}
 #outputHead{display:none}
 @media(max-width:540px){.fields{grid-template-columns:1fr}.card{padding:13px}main{padding:12px 9px 28px}.actions button{flex:1}}
+#printReport{display:none}
 @media print{
- @page{size:A4 landscape;margin:11mm}
- body{background:#fff;color:#202124;font-size:10pt;line-height:1.35}
- header{padding:0 0 10px;background:#fff!important;color:#222;border-bottom:4px solid #A50034}
- .logo,.no-print,footer,#pasteCard{display:none!important}
- .head{max-width:none;gap:0}.head h1{font-size:20pt;font-weight:800;letter-spacing:.2px}
- .sub{color:#555;font-size:9pt;margin-top:3px}
- main{max-width:none;padding:10px 0}
- .card{box-shadow:none;border:0;border-radius:0;padding:8px 0;margin:0 0 8px;break-inside:avoid}
- #outputHead{display:block!important;margin-bottom:8px}
- #outputHead h2{font-size:17pt;color:#A50034;margin:0 0 8px;letter-spacing:.6px}
- h2{font-size:12pt;margin:0 0 7px}
- .print-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 14px;margin-bottom:10px;border-top:1px solid #ddd;border-bottom:1px solid #ddd}
- .meta-item{padding:7px 3px;border-bottom:0;font-size:9.5pt;overflow-wrap:anywhere}
- .table-wrap{overflow:visible}
- table{min-width:0;width:100%;font-size:10pt;table-layout:fixed;border-collapse:collapse}
- thead{display:table-header-group}
- tr{break-inside:avoid;page-break-inside:avoid}
- th{background:#A50034!important;color:#fff!important;text-align:left;padding:9px 8px;border:1px solid #8b002b;print-color-adjust:exact;-webkit-print-color-adjust:exact;font-size:9pt;text-transform:uppercase;letter-spacing:.3px}
- td{padding:8px;border:1px solid #d4d7db;vertical-align:top;overflow-wrap:anywhere;white-space:pre-wrap}
- tbody tr:nth-child(even){background:#f6f6f7!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}
- #trainTable th:nth-child(1){width:34%}#trainTable th:nth-child(2),#trainTable th:nth-child(3){width:13%}#trainTable th:nth-child(4){width:10%}#trainTable th:nth-child(5){width:30%}
- #trainTable td:nth-child(2),#trainTable td:nth-child(3){font-weight:700;font-size:11pt;white-space:nowrap}
- #trainTable td:nth-child(1){font-weight:700}
- #trainTable td input,#trainTable td textarea{display:block;width:100%;border:0!important;background:transparent!important;color:#222!important;font:inherit;padding:0;margin:0;appearance:none;resize:none;box-shadow:none}
- #trainTable td textarea{min-height:0}
- #notes{border:1px solid #d4d7db!important;border-radius:0;padding:8px!important;min-height:45px;background:#fff!important;color:#222!important}
- label[for="notes"]{font-size:0}
- label[for="notes"] textarea{font-size:9.5pt}
- .note{display:none}
- .card:has(#notes){break-inside:avoid}
+ @page{size:A4 landscape;margin:10mm}
+ body{background:#fff!important;color:#202124;font-family:Arial,sans-serif;font-size:10pt;line-height:1.3}
+ body>*:not(#printReport){display:none!important}
+ #printReport{display:block!important}
+ .report-header{border-bottom:4px solid #A50034;padding:0 0 9px;margin-bottom:12px}
+ .report-title{font-size:22pt;font-weight:800;color:#A50034;margin:0 0 3px;letter-spacing:.3px}
+ .report-subtitle{font-size:9pt;color:#555;margin:0}
+ .report-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 14px;margin:10px 0 14px;border-top:1px solid #d6d6d6;border-bottom:1px solid #d6d6d6}
+ .report-meta div{padding:7px 4px;font-size:9pt;overflow-wrap:anywhere}
+ .report-meta strong{color:#444}
+ .report-table{border-collapse:collapse;width:100%;table-layout:fixed;font-size:10pt}
+ .report-table thead{display:table-header-group}
+ .report-table tr{break-inside:avoid;page-break-inside:avoid}
+ .report-table th{background:#A50034!important;color:#fff!important;text-align:left;padding:8px 7px;border:1px solid #8b002b;font-size:9pt;text-transform:uppercase;letter-spacing:.25px;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ .report-table td{padding:7px;border:1px solid #cfd2d6;vertical-align:top;overflow-wrap:anywhere;white-space:pre-wrap}
+ .report-table tbody tr:nth-child(even){background:#f3f4f5!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ .report-table th:nth-child(1){width:34%}.report-table th:nth-child(2),.report-table th:nth-child(3){width:13%}.report-table th:nth-child(4){width:10%}.report-table th:nth-child(5){width:30%}
+ .report-table td:first-child{font-weight:700}
+ .report-table td:nth-child(2),.report-table td:nth-child(3){font-weight:700;font-size:11pt;white-space:nowrap}
+ .report-notes{margin-top:14px;break-inside:avoid}
+ .report-notes h2{font-size:12pt;color:#A50034;border-bottom:1px solid #ccc;padding-bottom:4px;margin:0 0 6px}
+ .report-notes p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+ .report-footer{margin-top:16px;padding-top:5px;border-top:1px solid #ddd;font-size:8pt;color:#666}
 }
 </style>
 <link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icon-192.png"></head>
 <body>
+<div id="printReport" aria-hidden="true"></div>
 <header><div class="head"><div class="logo" aria-hidden="true">🚆</div><div><h1>Train List Builder</h1><p class="sub">Paste a working timetable, format it, and export or share your train list</p></div></div></header>
 <main>
 <section class="card">
@@ -146,12 +141,28 @@ function build(){
  if(parsed.length){tbody.innerHTML='';parsed.forEach(addRow);$('status').textContent='Identified '+parsed.length+' possible station row(s). Check and edit the table before exporting.'}
  else {$('status').textContent='No simple station/time rows recognised. Add rows manually; pasted source text remains above.'}
 }
-function updatePrintMeta(){
+function updatePrintReport(){
  const now = new Date();
  const exported = now.toLocaleDateString('en-GB') + ' ' + now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
- $('printMeta').innerHTML=[
- ['Headcode',$('headcode').value.toUpperCase()],['Unit number(s)',$('units').value],['Formation',$('setType').value],['Prepared by',$('prepared').value],['Report generated',exported]
- ].map(([k,v])=>'<div class="meta-item"><strong>'+escapeHtml(k)+':</strong> '+escapeHtml(v||'—')+'</div>').join('');
+ const meta = [
+  ['Headcode',$('headcode').value.toUpperCase()],
+  ['Unit number(s)',$('units').value],
+  ['Formation',$('setType').value],
+  ['Prepared by',$('prepared').value],
+  ['Report generated',exported]
+ ];
+ const rows = getRows();
+ const cols = [['station','Station / location'],['arrival','Arrival'],['departure','Departure'],['platform','Platform'],['notes','Notes']];
+ const table = '<table class="report-table"><thead><tr>'+cols.map(c=>'<th>'+c[1]+'</th>').join('')+'</tr></thead><tbody>'+
+  rows.map(r=>'<tr>'+cols.map(c=>'<td>'+escapeHtml(r[c[0]]||'')+'</td>').join('')+'</tr>').join('')+
+  '</tbody></table>';
+ const notes = $('notes').value.trim();
+ $('printReport').innerHTML =
+  '<div class="report-header"><h1 class="report-title">TRAIN LIST</h1><p class="report-subtitle">Railway timetable report</p></div>'+
+  '<div class="report-meta">'+meta.map(([k,v])=>'<div><strong>'+escapeHtml(k)+':</strong> '+escapeHtml(v||'—')+'</div>').join('')+'</div>'+
+  table+
+  (notes?'<section class="report-notes"><h2>Notes</h2><p>'+escapeHtml(notes)+'</p></section>':'')+
+  '<div class="report-footer">Train List · Check all timings against the authorised operational source.</div>';
 }
 $('build').onclick=build;
 $('addRow').onclick=()=>addRow();
@@ -166,7 +177,7 @@ $('copy').onclick=async()=>{
   $('actionStatus').textContent='Train list copied. Paste it into your destination app.';
  }catch(e){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();$('actionStatus').textContent='Plain-text train list copied.'}
 };
-$('pdf').onclick=()=>{if(!getRows().length){$('actionStatus').textContent='Add or import at least one timetable row before exporting.';return}updatePrintMeta();document.title='Train-List-'+($('headcode').value||'Train');window.print()};
+$('pdf').onclick=()=>{if(!getRows().length){$('actionStatus').textContent='Add or import at least one timetable row before exporting.';return}updatePrintReport();document.title='Train-List-'+($('headcode').value||'Train');window.print()};
 $('email').onclick=async()=>{
  const html='<h2>Train List — '+escapeHtml($('headcode').value.toUpperCase())+'</h2><p><strong>Unit number(s):</strong> '+escapeHtml($('units').value||'—')+' &nbsp; <strong>Formation:</strong> '+escapeHtml($('setType').value)+'<br><strong>Prepared by:</strong> '+escapeHtml($('prepared').value||'—')+'</p>'+tableHtml()+($('notes').value.trim()?'<p><strong>Notes:</strong><br>'+escapeHtml($('notes').value).replace(/\n/g,'<br>')+'</p>':'');
  try{if(navigator.clipboard&&window.ClipboardItem)await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([plainText()],{type:'text/plain'})})]);else await navigator.clipboard.writeText(plainText());}
